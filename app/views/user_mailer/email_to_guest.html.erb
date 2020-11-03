@@ -1,0 +1,10 @@
+<h1>Salut <%= @user.first_name.capitalize %></h1>
+    <p>
+      Nous avons pris en compte ta participation à l'évènement <%= @event.title %>
+    </p>
+    <p>
+      Voici l'email de contact <%= @event.admin.email %>.
+    </p>
+    <p>
+      Voici ton email <%= @user.email %>.
+    </p>
