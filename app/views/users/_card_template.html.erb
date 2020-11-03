@@ -1,0 +1,14 @@
+<h2 class="h3 mb-3 font-weight-normal text-center">All Events</h2>
+<div class="row justify-content-center">
+  <% @events.each do |event| %>
+    <div class="card border-light m-3 rounded custom-card" style="max-width: 20rem;">
+      <img class="rounded-top" src="http://lorempixel.com/400/200/food/<%= event.id %>"/>
+      <div class="card-body">
+        <h4 class="card-title"><%= event.title %></h4>
+        <h5 class="text-muted"><%= event.start_date %></h5>
+        <p class="card-text"><%= event.description%></p>
+
+      </div>
+    </div>
+  <% end %>
+</div>

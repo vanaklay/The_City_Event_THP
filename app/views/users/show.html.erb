@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="d-flex">
+    <img class="custom-profile-img mt-5 mb-2 mx-auto" src="https://robohash.org/<%= @user.id %>.png?set=set4">
+  </div>
+  <div>
+    <p>Your first name : <%= @user.first_name ? @user.first_name : "Not mentionned" %></p>
+    <p>Your last name : <%= @user.last_name ? @user.last_name : "Not mentionned" %></p>
+    <p>Your description : <%= @user.description ? @user.description : "Not mentionned" %></p>
+    <p>Your email : <%= @user.email ? @user.email : "Not mentionned" %></p>
+  </div>
+  <div>
+    <% if @events.length > 0 %> 
+      <%= render 'users/card_template' %>
+    <% else %> 
+      <p class="text-center m-3">No events</p>
+    <% end %>
+    
+  </div>
+  <p class="text-center m-3"><%= link_to "Edit your email >", edit_user_registration_path(@user) %></p>
+  <p class="text-center m-3"><%= link_to "Edit your profile >", edit_user_path(@user) %></p>
+
+</div>

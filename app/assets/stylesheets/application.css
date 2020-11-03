@@ -16,3 +16,15 @@
  body { 
   font-family: 'Comfortaa', cursive;
  }
+
+.custom-profile-img {
+   border-radius: 50%;
+   border: 1px rgba(47, 165, 231, 0.4) solid;
+}
+.custom-profile-img:hover {
+  box-shadow: 0 0 20px 5px rgba(47, 165, 231, 0.4);
+}
+
+.custom-card:hover {
+  box-shadow: 0 0 20px 5px rgba(47, 165, 231, 0.4);
+}
