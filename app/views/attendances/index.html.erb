@@ -1,5 +1,6 @@
 <div class="container">
   <h1 class="text-center m-3">EVENT INFO</h1>
   <p class="text-center m-3"><%= link_to "Edit this event >", edit_event_path(@event.id) %></p>
+  <p class="text-center m-3"><%= link_to "Delete this event >", event_path(@event.id), method: :delete %></p>
   <%= render 'attendances/users' %>
 </div>
