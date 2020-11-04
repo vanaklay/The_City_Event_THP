@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
-    @events = Event.where(admin: @user).reverse
+    @events = Event.where(admin: @user)
   end
 
   def edit
@@ -17,7 +17,7 @@ class UsersController < ApplicationController
       flash[:notice] = "User updated in DB"
       redirect_to user_path(@user.id)
     else
-      flash.now[:alert] = "We cannot updated this gossip for this reason(s) :"
+      flash.now[:alert] = "We cannot updated this user for this reason(s) :"
       render :edit
     end
   end

@@ -26,4 +26,22 @@ class Event < ApplicationRecord
     date = self.start_date.to_datetime + (self.duration/1440.0)
     date.strftime('%H:%M')
   end
+
+  def is_registred?(user)
+    if self.attendances
+      self.attendances.find_by(user: user.id) ? true : false
+    else 
+      puts "n'a pas attendances"
+      return
+    end
+  end
+
+  def is_admin?(user)
+    self.admin.id == user.id ? true : false
+  end
+
+  def amount
+    self.price * 100
+  end
+
 end

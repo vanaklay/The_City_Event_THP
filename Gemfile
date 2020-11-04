@@ -32,6 +32,7 @@ gem 'table_print'
 gem 'dotenv-rails'
 gem 'devise'
 gem 'faker'
+gem 'stripe'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

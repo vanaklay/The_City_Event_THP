@@ -8,6 +8,13 @@
     <p>Duration : <%= @event.duration %></p>
     <p>Where : <%= @event.location %></p>
     <p>Price : <%= @event.price %> €</p>
+    <% if !@event.is_admin?(current_user) && !@event.is_registred?(current_user) %>
+      <%= link_to "Subscribe", new_event_attendance_path(@event.id) , class: "btn btn-primary"%>
+    <% elsif !@event.is_admin?(current_user) && @event.is_registred?(current_user) %>
+      <%= link_to "Already subscribe", new_event_attendance_path(@event.id) , class: "btn btn-primary"%>
+    <% elsif @event.is_admin?(current_user) %>
+      <%= link_to "Event info", event_attendances_path(@event.id) , class: "btn btn-primary"%>
+    <% end %>
   </div>
   <% if @events.length > 0 %> 
       <%= render 'events/cards' %>

@@ -1,5 +1,7 @@
 class EventsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :show]
+  before_action :authenticate_user!, only: [:new, :create, :show, :edit]
+  before_action :is_admin?, only: [:edit]
+  
   def index
     @events = Event.all.reverse
     @previous_events = Event.all.slice(-3..-1).reverse
@@ -26,6 +28,21 @@ class EventsController < ApplicationController
     @events = Event.where(admin: @event.admin)
   end
 
+  def edit
+    @event = Event.find(params[:id])
+  end
+
+  def update
+    @event = Event.find(params[:id])
+    if @event.update(event_params)
+      flash[:notice] = "Event updated in DB"
+      redirect_to event_path(@event.id)
+    else
+      flash.now[:alert] = "We cannot updated this event for this reason(s) :"
+      render :edit
+    end
+  end
+
   private
   def event_params
     event_params = params.require(:event).permit(:start_date, :duration, :title, :description, :price, :location)
@@ -39,4 +56,8 @@ class EventsController < ApplicationController
     DateTime.parse(str+'+01:00')
   end
 
+  def is_admin?
+    @event = Event.find_by(id: params[:id])
+    redirect_to root_path unless @event.is_admin?(current_user)
+  end
 end

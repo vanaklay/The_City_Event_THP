@@ -1,0 +1,19 @@
+<h2 class="h3 mb-3 font-weight-normal text-center">All Subscribers</h2>
+<div class="row justify-content-center">
+  <% @attendances.each do |a| %>
+    <div class="card border-light m-3 rounded custom-card" style="max-width: 25rem;">
+      <div class="d-flex">
+        <img class="mt-5 mb-2 mx-auto" src="https://robohash.org/<%= a.user.id %>.png?set=set4">
+      </div>
+      <div class="card-body">
+        <p>First name : <%= a.user.first_name ? a.user.first_name : "Not mentionned" %></p>
+        <p>Last name : <%= a.user.last_name ? a.user.last_name : "Not mentionned" %></p>
+        <p>Description : <%= a.user.description ? a.user.description : "Not mentionned" %></p>
+        <p>Email : <%= a.user.email ? a.user.email : "Not mentionned" %></p>
+      </div>
+     </div>
+  <% end %>
+</div>
+
+       
+  
