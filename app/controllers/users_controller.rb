@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
-    @events = Event.where(admin: @user)
+    @events = Event.where(admin: @user).reverse
   end
 
   def edit

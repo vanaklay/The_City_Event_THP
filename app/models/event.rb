@@ -17,4 +17,13 @@ class Event < ApplicationRecord
   def future_date
     errors.add(:start_date, "Event can't be in the past") unless start_date > DateTime.now
   end
+
+  def get_start
+    self.start_date.strftime('%Y-%m-%d %H:%M')
+  end
+
+  def end_event
+    date = self.start_date.to_datetime + (self.duration/1440.0)
+    date.strftime('%H:%M')
+  end
 end

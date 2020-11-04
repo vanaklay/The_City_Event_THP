@@ -28,3 +28,6 @@
 .custom-card:hover {
   box-shadow: 0 0 20px 5px rgba(47, 165, 231, 0.4);
 }
+.red {
+  color: red;
+}
