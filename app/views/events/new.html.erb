@@ -17,8 +17,8 @@
         <h1 class="h3 mb-3 font-weight-normal text-center">Create an Event</h1>
         
         <div class="form-group">
-          <%= f.label :start_date %> <p class="red">* Require format '09 Nov 2020 18:05:00'</p>
-          <%= f.text_field :start_date, class: "form-control" %>
+          <%= f.label :start_date %> <p class="red">* Require</p>
+          <%= f.datetime_field :start_date, class: "form-control" %>
         </div>
         <div class="form-group">
           <%= f.label :duration %> <p class="red">* Require duration multiple of 5</p>
