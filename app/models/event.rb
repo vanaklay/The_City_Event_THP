@@ -44,4 +44,5 @@ class Event < ApplicationRecord
     self.price * 100
   end
 
+
 end

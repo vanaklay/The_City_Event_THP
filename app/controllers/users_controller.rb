@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only: [:show]
-  before_action :check_user, only: [:show]
+  before_action :authenticate_user!
+  before_action :check_user
 
   def show
     @user = current_user
@@ -14,8 +14,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      flash[:notice] = "User updated in DB"
-      redirect_to user_path(@user.id)
+      redirect_to user_path(@user.id), success: "User updated in DB"
     else
       flash.now[:alert] = "We cannot updated this user for this reason(s) :"
       render :edit
@@ -26,5 +25,6 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:first_name, :last_name, :description)
   end
+
 
 end

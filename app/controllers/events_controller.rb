@@ -1,6 +1,8 @@
 class EventsController < ApplicationController
+  include EventsHelper
+  before_action :event, only: [:edit, :update, :destroy, :show]
   before_action :authenticate_user!, only: [:new, :create, :show, :edit]
-  before_action :is_admin?, only: [:edit]
+  before_action :is_admin?, only: [:edit, :update, :destroy]
   
   def index
     @events = Event.all.reverse
@@ -15,8 +17,7 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.admin = current_user
     if @event.save
-      flash[:notice] = "Event create"
-      redirect_to event_path(@event.id)
+      redirect_to event_path(@event.id), success: "Alright ! Event has been created !!!"
     else
       flash.now[:alert] = "We cannot create this event for this reason(s) :"
       render :new
@@ -24,19 +25,15 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.find(params[:id])
     @events = Event.where(admin: @event.admin)
   end
 
   def edit
-    @event = Event.find(params[:id])
   end
 
   def update
-    @event = Event.find(params[:id])
     if @event.update(event_params)
-      flash[:notice] = "Event updated in DB"
-      redirect_to event_path(@event.id)
+      redirect_to event_path(@event.id), success: "Event updated in DB"
     else
       flash.now[:alert] = "We cannot updated this event for this reason(s) :"
       render :edit
@@ -61,8 +58,4 @@ class EventsController < ApplicationController
     DateTime.parse(str+'+01:00')
   end
 
-  def is_admin?
-    @event = Event.find_by(id: params[:id])
-    redirect_to root_path unless @event.is_admin?(current_user)
-  end
 end

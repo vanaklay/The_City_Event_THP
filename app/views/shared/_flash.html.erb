@@ -1,0 +1,7 @@
+<% flash.each do |name, msg|%>
+  <div class='text-center alert alert-<%= name %>' role="alert">
+    <ul class="list-unstyled">
+      <li class="text-center m-3"><%= msg %></li>
+    </ul>
+  </div>
+<%end%>

@@ -2,18 +2,6 @@
   <div class="d-flex">
     <img class="custom-profile-img mt-5 mb-2 mx-auto" src="https://robohash.org/<%= @user.id %>.png?set=set4">
   </div>
-  <div class="row">
-    <div class="col-md-6 offset-md-3">
-      <br><br><br>
-        <% if notice %>
-          <div class="alert alert-success" role="alert">
-            <ul class="list-unstyled">
-              <li class="text-center m-3"><%= notice %></li>
-            </ul>
-          </div>
-        <% end %>
-    </div>
-  </div>
   <div>
     <p>Your first name : <%= @user.first_name ? @user.first_name : "Not mentionned" %></p>
     <p>Your last name : <%= @user.last_name ? @user.last_name : "Not mentionned" %></p>

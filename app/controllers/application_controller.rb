@@ -1,3 +1,4 @@
 class ApplicationController < ActionController::Base
-  include UsersHelper
+  include ApplicationHelper
+  add_flash_types :info, :warning, :success, :danger
 end
