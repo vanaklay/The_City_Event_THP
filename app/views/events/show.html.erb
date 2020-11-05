@@ -1,6 +1,11 @@
 <div class="container">
   <div class="mt-3">
     <h1 class="text-center m-3">Title of this event : <%= @event.title %></h1>
+    <%if @event.picture.attached?%>
+      <%= image_tag @event.picture, alt: 'picture' %>
+    <%else%>
+      <p>=== No picture attached to this event ===</p>
+    <%end%>
     <p>Description : <%= @event.description %></p>
     <p>Number of subscribers : Not mentionned</p>
     <p>Creator : <%= @event.admin.email %></p>
@@ -15,6 +20,10 @@
       <%= link_to "Already subscribe", new_event_attendance_path(@event.id) , class: "btn btn-primary"%>
     <% elsif @event.is_admin?(current_user) %>
       <%= link_to "Event info", event_attendances_path(@event.id) , class: "btn btn-primary"%>
+      <%= form_tag event_pictures_path(@event), multipart: true do %>
+        <%= file_field_tag :picture %>
+        <%= submit_tag "Update" %>
+      <% end %>
     <% end %>
     
   </div>
