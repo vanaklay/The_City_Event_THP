@@ -1,6 +1,10 @@
 <div class="container">
-  <div class="d-flex">
-    <img class="custom-profile-img mt-5 mb-2 mx-auto" src="https://robohash.org/<%= @user.id %>.png?set=set4">
+  <div class="d-flex">  
+    <%if @user.avatar.attached?%>
+      <%= image_tag @user.avatar, alt: 'avatar', class: "custom-profile-img mt-5 mb-2 mx-auto img-fluid" %>
+    <%else%>
+      <%= image_tag "who.png", alt: 'avatar', class: "custom-profile-img mt-5 mb-2 mx-auto" %>
+    <%end%>
   </div>
   <div>
     <p>Your first name : <%= @user.first_name ? @user.first_name : "Not mentionned" %></p>

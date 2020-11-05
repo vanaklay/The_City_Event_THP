@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   after_create :welcome_send
-
+  has_one_attached :avatar
   has_many :attendances
   has_many :events, through: :attendances
   has_many :admins, foreign_key: 'admin_id', class_name: "Event", dependent: :destroy

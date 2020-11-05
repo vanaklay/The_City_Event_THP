@@ -16,8 +16,6 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     @event.admin = current_user
-    @event.picture.attach(params[:event][:picture])
-
     if @event.save
       redirect_to event_path(@event.id), success: "Alright ! Event has been created !!!"
     else
@@ -49,7 +47,7 @@ class EventsController < ApplicationController
 
   private
   def event_params
-    event_params = params.require(:event).permit(:start_date, :duration, :title, :description, :price, :location)
+    event_params = params.require(:event).permit(:start_date, :duration, :title, :description, :price, :location, :picture)
     event_params[:start_date] = str_to_datetime(event_params[:start_date])
     event_params[:duration] = event_params[:duration].to_i 
     event_params[:price] = event_params[:price].to_i 
