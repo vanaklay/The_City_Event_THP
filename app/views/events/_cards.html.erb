@@ -1,16 +1,19 @@
-<h2 class="h3 mb-3 font-weight-normal text-center">All events from this admin</h2>
 <div class="row justify-content-center">
   <% @events.each do |event| %>
     <% if event.id != @event.id %>
-      <div class="card border-light m-3 rounded custom-card" style="max-width: 20rem;"> 
-        <img class="rounded-top" src="https://picsum.photos/id/<%= event.id %>/300/200"/>
-        <div class="card-body">
-          <h4 class="card-title"><%= event.title %></h4>
-          <h5 class="text-muted"><%= event.start_date %></h5>
-          <p class="card-text"><%= event.description%></p>
-          <p class="text-center m-3"><%= link_to "See this event >", event_path(event.id) %></p>
+        <div class="card border-light m-3 rounded custom-card" style="max-width: 20rem;">
+          <% if event.picture.attached? %>
+            <%= image_tag event.picture, alt: 'picture', class: "img-fluid rounded-top"%> 
+          <% else %>
+            <%= image_tag "event.png", class: "img-fluid rounded-top"%>
+          <% end %>
+          <div class="card-body">
+            <h4 class="card-title"><%= event.title %></h4>
+            <h5 class="text-muted"><%= event.start_date %></h5>
+            <p class="card-text"><%= event.description%></p>
+            <p class="text-center m-3"><%= link_to "See this event >", event_path(event.id) %></p>
+          </div>
         </div>
-      </div>
     <% end %>
   <% end %>
 </div>
